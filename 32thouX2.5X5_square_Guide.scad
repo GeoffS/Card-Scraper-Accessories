@@ -24,14 +24,22 @@ module itemModule()
 		tcu([-cardX/2, -cardY/2, -1], [cardX, cardY, 100]);
 
 		// Chamfer slot in middle:
-		// tcy([], d=4, h=)
+		ctrY = baseY - 2*baseEndY;
+		translate([0,0,baseZinMiddle+2-cardX/2-1]) rotate([-90,0,0]) tcy([0,0,-ctrY/2], d=4, h=ctrY, $fn=4);
+		// Chamfer slot in the ends:
+		
+		translate([0,0,baseZatEnds+2-cardX/2-1]) rotate([-90,0,0]) tcy([0,0,-cardY/2], d=4, h=cardY, $fn=4);
 	}
 }
 
 module clip(d=0)
 {
-	// tc([-200, -400+d, -10], 400);
-	// tc([-200, 20-d, -10], 400);
+	// tcu([-200, -400+d, -10], 400);
+	// tuc([-200, 20-d, -10], 400);
+
+	// tcu([-200, cardY/2-1-d, -10], 400);
+
+	// tcu([0, -200, -10], 400);
 }
 
 if(developmentRender)
