@@ -30,7 +30,6 @@ module itemModule()
 		translate([0,0,baseZinMiddle+2-cardX/2-1]) rotate([-90,0,0]) tcy([0,0,-ctrY/2], d=4, h=ctrY, $fn=4);
 
 		// Chamfer slot in the ends:
-		// translate([0,0,baseZatEnds+2-cardX/2-1]) rotate([-90,0,0]) tcy([0,0,-cardY/2], d=4, h=cardY, $fn=4);
 		hull() doubleY() translate([0, baseY/2-baseX/2, baseZatEnds-cardX/2-cz]) cylinder(d2=6, d1=0, h=3);
 	}
 }
