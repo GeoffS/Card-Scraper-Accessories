@@ -7,8 +7,10 @@ cardY = 5 * 25.4 + 1;;
 baseX =  30;
 baseEndY = baseX;
 baseY = cardY + baseEndY;
-baseZatEnds = 40;
+baseZatEnds = 45;
 baseZinMiddle = 15;
+
+cz = 2;
 
 module itemModule()
 {
@@ -16,8 +18,8 @@ module itemModule()
 	{
 		union()
 		{
-			doubleY() translate([0, baseY/2-baseX/2, 0]) simpleChamferedCylinder(d=baseX, h=baseZatEnds, cz=2);
-			hull() doubleY() translate([0, baseY/2-baseX/2, 0]) simpleChamferedCylinder(d=baseX, h=baseZinMiddle, cz=2);
+			doubleY() translate([0, baseY/2-baseX/2, 0]) simpleChamferedCylinder(d=baseX, h=baseZatEnds, cz=cz);
+			hull() doubleY() translate([0, baseY/2-baseX/2, 0]) simpleChamferedCylinder(d=baseX, h=baseZinMiddle, cz=cz);
 		}
 
 		// Card slot:
@@ -26,9 +28,10 @@ module itemModule()
 		// Chamfer slot in middle:
 		ctrY = baseY - 2*baseEndY;
 		translate([0,0,baseZinMiddle+2-cardX/2-1]) rotate([-90,0,0]) tcy([0,0,-ctrY/2], d=4, h=ctrY, $fn=4);
+
 		// Chamfer slot in the ends:
-		
-		translate([0,0,baseZatEnds+2-cardX/2-1]) rotate([-90,0,0]) tcy([0,0,-cardY/2], d=4, h=cardY, $fn=4);
+		// translate([0,0,baseZatEnds+2-cardX/2-1]) rotate([-90,0,0]) tcy([0,0,-cardY/2], d=4, h=cardY, $fn=4);
+		hull() doubleY() translate([0, baseY/2-baseX/2, baseZatEnds-cardX/2-cz]) cylinder(d2=6, d1=0, h=3);
 	}
 }
 
